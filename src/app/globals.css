@@ -1,0 +1,150 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-accent: var(--font-accent);
+  --font-body: var(--font-body);
+  --color-cream: var(--cream);
+  --color-olive: var(--olive);
+  --color-olive-dark: var(--olive-dark);
+  --color-coral: var(--coral);
+  --color-coral-dark: var(--coral-dark);
+  --color-mustard: var(--mustard);
+  --color-mustard-dark: var(--mustard-dark);
+  --color-ink: var(--ink);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Tarlaquena Catering brand palette (style reference only, see AGENTS.md / plan) */
+  --cream: #fbf3e9;
+  --olive: #4a4a2a;
+  --olive-dark: #3a3a20;
+  --coral: #e85d3d;
+  --coral-dark: #d14a2c;
+  --mustard: #e8b84b;
+  --mustard-dark: #d6a233;
+  --ink: #1a1a16;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--coral);
+  --primary-foreground: #ffffff;
+  --secondary: var(--mustard);
+  --secondary-foreground: var(--ink);
+  --muted: #f0e6d6;
+  --muted-foreground: #6b6b52;
+  --accent: var(--olive);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #e4d7c1;
+  --input: #e4d7c1;
+  --ring: var(--coral);
+  --chart-1: var(--coral);
+  --chart-2: var(--mustard);
+  --chart-3: var(--olive);
+  --chart-4: oklch(0.556 0 0);
+  --chart-5: oklch(0.371 0 0);
+  --radius: 0.75rem;
+  --sidebar: var(--cream);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--coral);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--mustard);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: #e4d7c1;
+  --sidebar-ring: var(--coral);
+}
+
+.dark {
+  --background: #201f19;
+  --foreground: var(--cream);
+  --card: #2a2921;
+  --card-foreground: var(--cream);
+  --popover: #2a2921;
+  --popover-foreground: var(--cream);
+  --primary: var(--coral);
+  --primary-foreground: #ffffff;
+  --secondary: var(--mustard);
+  --secondary-foreground: var(--ink);
+  --muted: #33321f;
+  --muted-foreground: #b8b199;
+  --accent: var(--olive);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: #3a3930;
+  --input: #3a3930;
+  --ring: var(--coral);
+  --chart-1: var(--coral);
+  --chart-2: var(--mustard);
+  --chart-3: var(--olive);
+  --chart-4: oklch(0.556 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: #201f19;
+  --sidebar-foreground: var(--cream);
+  --sidebar-primary: var(--coral);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--mustard);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: #3a3930;
+  --sidebar-ring: var(--coral);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-body;
+  }
+}
