@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, type ReactNode } from "react";
 import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { submitContactForm, type ContactFormState } from "@/lib/actions/contact";
@@ -27,6 +27,26 @@ function SubmitButton() {
   );
 }
 
+function ContactField({
+  id,
+  label,
+  errors,
+  children,
+}: {
+  id: string;
+  label: string;
+  errors?: string[];
+  children: ReactNode;
+}) {
+  return (
+    <Field data-invalid={!!errors}>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      {children}
+      <FieldError errors={errors?.map((message) => ({ message }))} />
+    </Field>
+  );
+}
+
 export function ContactSection() {
   const [state, formAction] = useActionState(submitContactForm, initialState);
   const formRef = useRef<HTMLFormElement>(null);
@@ -46,18 +66,13 @@ export function ContactSection() {
           <CardContent>
             <form ref={formRef} action={formAction}>
               <FieldGroup>
-                <Field data-invalid={!!state.errors?.name}>
-                  <FieldLabel htmlFor="name">Name</FieldLabel>
+                <ContactField id="name" label="Name" errors={state.errors?.name}>
                   <Input id="name" name="name" placeholder="Your name" required />
-                  <FieldError errors={state.errors?.name?.map((message) => ({ message }))} />
-                </Field>
-                <Field data-invalid={!!state.errors?.email}>
-                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                </ContactField>
+                <ContactField id="email" label="Email" errors={state.errors?.email}>
                   <Input id="email" name="email" type="email" placeholder="you@example.com" required />
-                  <FieldError errors={state.errors?.email?.map((message) => ({ message }))} />
-                </Field>
-                <Field data-invalid={!!state.errors?.message}>
-                  <FieldLabel htmlFor="message">Message</FieldLabel>
+                </ContactField>
+                <ContactField id="message" label="Message" errors={state.errors?.message}>
                   <Textarea
                     id="message"
                     name="message"
@@ -65,8 +80,7 @@ export function ContactSection() {
                     rows={5}
                     required
                   />
-                  <FieldError errors={state.errors?.message?.map((message) => ({ message }))} />
-                </Field>
+                </ContactField>
                 <SubmitButton />
               </FieldGroup>
             </form>

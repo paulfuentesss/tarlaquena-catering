@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+if (!process.env.ADMIN_EMAIL) {
+  throw new Error(
+    "ADMIN_EMAIL is not set. Copy .env.example to .env.local and add the admin's email."
+  );
+}
+
 export default async function AdminPage() {
   const user = await currentUser();
   const email = user?.primaryEmailAddress?.emailAddress;

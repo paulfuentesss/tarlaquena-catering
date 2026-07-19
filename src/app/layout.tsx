@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Fraunces, Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -39,13 +38,10 @@ export default function RootLayout({
       <html
         lang="en"
         className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full scroll-smooth antialiased`}
-        suppressHydrationWarning
       >
         <body className="min-h-full flex flex-col bg-cream">
-          <ThemeProvider>
-            {children}
-            <Toaster />
-          </ThemeProvider>
+          {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
