@@ -58,6 +58,7 @@ export function Nav({
         </nav>
         <div className="flex items-center gap-2">
           {cta && (
+            // eslint-disable-next-line jsx-a11y/anchor-has-content -- Base UI's render prop injects the Button's children into this anchor
             <Button size="sm" render={<a href="#contact" />}>
               Inquire Now
             </Button>
