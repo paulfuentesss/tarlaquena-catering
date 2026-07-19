@@ -38,7 +38,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
-        className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full antialiased`}
+        className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full scroll-smooth antialiased`}
+        suppressHydrationWarning
       >
         <body className="min-h-full flex flex-col bg-cream">
           <ThemeProvider>
