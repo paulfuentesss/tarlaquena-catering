@@ -37,6 +37,7 @@ export function PackagesSection() {
           ))}
         </div>
         <div className="mt-8 flex justify-center">
+          {/* eslint-disable-next-line jsx-a11y/anchor-has-content -- Base UI's render prop injects the Button's children into this anchor */}
           <Button size="lg" render={<a href="#contact" />}>
             Book This Package
           </Button>
