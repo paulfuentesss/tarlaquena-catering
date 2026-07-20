@@ -6,7 +6,10 @@ import { contactMessages } from "@/db/schema";
 
 const ContactFormSchema = z.object({
   name: z.string().trim().min(2, { error: "Name must be at least 2 characters." }),
-  email: z.email({ error: "Please enter a valid email." }).trim(),
+  email: z
+    .string()
+    .trim()
+    .pipe(z.email({ error: "Please enter a valid email." })),
   message: z
     .string()
     .trim()

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "lenis/dist/lenis.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -146,5 +147,76 @@
   }
   html {
     @apply font-body;
+  }
+}
+
+::view-transition-old(.fade) {
+  animation: 120ms ease-out both via-fade-out;
+}
+::view-transition-new(.fade) {
+  animation: 180ms ease-in 60ms both via-fade-in;
+}
+@keyframes via-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes via-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+:root {
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(.nav-forward) {
+  --slide-offset: -60px;
+  animation:
+    150ms var(--ease-smooth-out) both via-nav-fade reverse,
+    480ms var(--ease-smooth-out) both via-nav-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 60px;
+  animation:
+    240ms var(--ease-smooth-out) 150ms both via-nav-fade,
+    480ms var(--ease-smooth-out) both via-nav-slide;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 60px;
+  animation:
+    150ms var(--ease-smooth-out) both via-nav-fade reverse,
+    480ms var(--ease-smooth-out) both via-nav-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -60px;
+  animation:
+    240ms var(--ease-smooth-out) 150ms both via-nav-fade,
+    480ms var(--ease-smooth-out) both via-nav-slide;
+}
+@keyframes via-nav-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes via-nav-slide {
+  from {
+    translate: var(--slide-offset);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
