@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type MouseEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -14,7 +15,22 @@ const defaultNavLinks: NavLink[] = [
   { label: "Blog", href: "#", active: false },
 ];
 
+function navTransitionType(href: string): "nav-forward" | "nav-back" | undefined {
+  if (href === "/") return "nav-back";
+  if (href === "/menu") return "nav-forward";
+  return undefined;
+}
+
+// `<Link transitionTypes>` is dropped by this Next.js build's link.js before it
+// reaches router.push, so the type never reaches the ViewTransition — drive the
+// navigation through useRouter().push() instead, which does forward it.
+function isPlainLeftClick(event: MouseEvent<HTMLAnchorElement>) {
+  return !(event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey);
+}
+
 function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void }) {
+  const router = useRouter();
+
   if (!link.active) {
     return (
       <span aria-disabled="true" className="cursor-not-allowed text-sm font-medium text-ink/40">
@@ -23,10 +39,17 @@ function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void })
     );
   }
 
+  const transitionType = navTransitionType(link.href);
+
   return (
     <Link
       href={link.href}
-      onClick={onClick}
+      onClick={(event) => {
+        onClick?.();
+        if (!isPlainLeftClick(event)) return;
+        event.preventDefault();
+        router.push(link.href, transitionType ? { transitionTypes: [transitionType] } : undefined);
+      }}
       className="text-sm font-medium text-ink transition-colors hover:text-coral"
     >
       {link.label}
@@ -44,11 +67,20 @@ export function Nav({
   end?: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-cream/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
-        <Link href="/" className="font-heading text-xl font-extrabold tracking-tight text-ink">
+        <Link
+          href="/"
+          onClick={(event) => {
+            if (!isPlainLeftClick(event)) return;
+            event.preventDefault();
+            router.push("/", { transitionTypes: ["nav-back"] });
+          }}
+          className="font-heading text-xl font-extrabold tracking-tight text-ink"
+        >
           Tarlaquena Catering
         </Link>
         <nav className="hidden items-center gap-8 sm:flex">

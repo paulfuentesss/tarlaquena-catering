@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import { OfferingsSection } from "@/components/sections/offerings-section";
 import { PackagesSection } from "@/components/sections/packages-section";
 
@@ -8,7 +9,10 @@ export const metadata: Metadata = {
 
 export default function MenuPage() {
   return (
-    <>
+    <ViewTransition
+      enter={{ "nav-forward": "nav-forward", "nav-back": "nav-back", default: "fade" }}
+      exit={{ "nav-forward": "nav-forward", "nav-back": "nav-back", default: "fade" }}
+    >
       <div className="bg-cream px-6 pt-14 pb-4 text-center sm:px-10 lg:px-16">
         <h1 className="font-heading text-4xl font-extrabold uppercase tracking-tight text-ink sm:text-5xl">
           Our Menu
@@ -16,6 +20,6 @@ export default function MenuPage() {
       </div>
       <OfferingsSection variant="full" />
       <PackagesSection />
-    </>
+    </ViewTransition>
   );
 }
