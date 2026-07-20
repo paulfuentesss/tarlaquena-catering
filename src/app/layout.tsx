@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   title: "Tarlaquena Catering",
   description:
     "Tarlaquena Catering — full-service catering for buffets, meal boxes, and events.",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -38,7 +41,7 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         variables: {
-          colorPrimary: "#e85d3d",
+          colorPrimary: "#377D41",
           colorPrimaryForeground: "#ffffff",
           colorBackground: "#ffffff",
           colorForeground: "#1a1a16",
@@ -47,41 +50,41 @@ export default function RootLayout({
           colorInput: "#ffffff",
           colorInputForeground: "#1a1a16",
           colorBorder: "#e4d7c1",
-          colorRing: "#e85d3d",
+          colorRing: "#377D41",
           colorNeutral: "#1a1a16",
-          colorDanger: "#d14a2c",
+          colorDanger: "#DC2626",
           borderRadius: "0.75rem",
           fontFamily: "var(--font-body)",
         },
         elements: {
           card: "shadow-lg rounded-2xl border border-[var(--border)]",
           formButtonPrimary:
-            "bg-coral hover:bg-coral-dark text-white normal-case shadow-none",
+            "bg-primary hover:bg-primary-dark text-white normal-case shadow-none",
           formFieldInput:
-            "border-[var(--border)] focus:border-coral focus:ring-coral/30",
-          footerActionLink: "text-coral hover:text-coral-dark",
+            "border-[var(--border)] focus:border-primary focus:ring-primary/30",
+          footerActionLink: "text-primary hover:text-primary-dark",
           footer: {
             backgroundColor: "#e9e2d6",
           },
-          avatarBox: "ring-2 ring-coral/20",
+          avatarBox: "ring-2 ring-primary/20",
           navbarButton: "text-ink",
           navbarButtonIcon: "text-ink",
           navbar: {
             backgroundColor: "#e9e2d6",
           },
           badge: {
-            backgroundColor: "rgba(232, 93, 61, 0.15)",
-            color: "#d14a2c",
+            backgroundColor: "rgba(55, 125, 65, 0.15)",
+            color: "#27592e",
             border: "none",
           },
           userButtonPopoverCard: "shadow-lg rounded-2xl border border-[var(--border)]",
           userButtonPopoverActionButton: {
             color: "#1a1a16",
             "&:hover": {
-              backgroundColor: "rgba(74, 74, 42, 0.10)",
+              backgroundColor: "rgba(55, 125, 65, 0.10)",
             },
           },
-          userButtonPopoverActionButtonIcon: "text-olive",
+          userButtonPopoverActionButtonIcon: "text-green",
           userButtonPopoverFooter: {
             backgroundColor: "#e9e2d6",
           },

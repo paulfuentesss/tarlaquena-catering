@@ -30,7 +30,7 @@ function InstagramIcon(props: SVGProps<SVGSVGElement>) {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 bg-olive px-6 py-10 text-cream sm:px-10 lg:px-16">
+    <footer className="border-t border-border/60 bg-green px-6 py-10 text-cream sm:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
           <p className="font-heading text-lg font-bold">Tarlaquena Catering</p>
