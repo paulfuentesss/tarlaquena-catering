@@ -3,6 +3,7 @@
 import { useState, type ReactNode, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -30,6 +31,7 @@ function isPlainLeftClick(event: MouseEvent<HTMLAnchorElement>) {
 
 function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void }) {
   const router = useRouter();
+  const lenis = useLenis();
 
   if (!link.active) {
     return (
@@ -48,7 +50,11 @@ function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void })
         onClick?.();
         if (!isPlainLeftClick(event)) return;
         event.preventDefault();
-        router.push(link.href, transitionType ? { transitionTypes: [transitionType] } : undefined);
+        lenis?.scrollTo(0, { immediate: true, force: true });
+        router.push(link.href, {
+          scroll: false,
+          ...(transitionType ? { transitionTypes: [transitionType] } : {}),
+        });
       }}
       className="text-sm font-medium text-ink transition-colors hover:text-coral"
     >
@@ -68,6 +74,7 @@ export function Nav({
 }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const lenis = useLenis();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-cream/95 backdrop-blur">
@@ -77,7 +84,8 @@ export function Nav({
           onClick={(event) => {
             if (!isPlainLeftClick(event)) return;
             event.preventDefault();
-            router.push("/", { transitionTypes: ["nav-back"] });
+            lenis?.scrollTo(0, { immediate: true, force: true });
+            router.push("/", { scroll: false, transitionTypes: ["nav-back"] });
           }}
           className="font-heading text-xl font-extrabold tracking-tight text-ink"
         >

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Fraunces, Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
+import { LenisProvider } from "@/components/providers/lenis-provider";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -90,11 +91,13 @@ export default function RootLayout({
       <html
         lang="en"
         data-scroll-behavior="smooth"
-        className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full scroll-smooth antialiased`}
+        className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col bg-cream">
-          {children}
-          <Toaster />
+          <LenisProvider>
+            {children}
+            <Toaster />
+          </LenisProvider>
         </body>
       </html>
     </ClerkProvider>
