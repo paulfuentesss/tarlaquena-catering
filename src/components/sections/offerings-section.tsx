@@ -25,7 +25,7 @@ export function OfferingsSection({ variant = "full" }: OfferingsSectionProps) {
         <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
           {items.map((offering) => (
             <div key={offering.slug} className="flex flex-col overflow-hidden rounded-2xl">
-              <div className="bg-coral px-3 py-2 text-center text-sm font-bold text-white">
+              <div className="bg-secondary px-3 py-2 text-center text-sm font-bold text-secondary-foreground">
                 {offering.title}
               </div>
               <PlaceholderImage

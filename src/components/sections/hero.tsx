@@ -10,7 +10,7 @@ export function Hero() {
           Discover Culinary
           <br />
           Excellence{" "}
-          <span className="font-accent text-3xl font-normal italic normal-case text-coral sm:text-4xl lg:text-5xl">
+          <span className="font-accent text-3xl font-normal italic normal-case text-primary sm:text-4xl lg:text-5xl">
             with Tarlaquena
           </span>
         </h1>

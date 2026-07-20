@@ -22,14 +22,14 @@ export function TestimonialsSection() {
               ) : (
                 <div
                   aria-hidden
-                  className="flex size-14 items-center justify-center rounded-full bg-mustard/40 font-heading text-lg font-bold text-olive"
+                  className="flex size-14 items-center justify-center rounded-full bg-terracotta/40 font-heading text-lg font-bold text-green"
                 >
                   {testimonial.name.charAt(0)}
                 </div>
               )}
               <p className="text-sm italic text-ink/80">&ldquo;{testimonial.quote}&rdquo;</p>
               <div>
-                <p className="text-sm font-bold text-coral">{testimonial.name}</p>
+                <p className="text-sm font-bold text-primary">{testimonial.name}</p>
                 <p className="text-xs text-ink/60">{testimonial.role}</p>
               </div>
             </div>

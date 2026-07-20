@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, type ReactNode, type MouseEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,8 @@ function isPlainLeftClick(event: MouseEvent<HTMLAnchorElement>) {
 function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void }) {
   const router = useRouter();
   const lenis = useLenis();
+  const pathname = usePathname();
+  const isCurrent = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
   if (!link.active) {
     return (
@@ -46,6 +49,7 @@ function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void })
   return (
     <Link
       href={link.href}
+      aria-current={isCurrent ? "page" : undefined}
       onClick={(event) => {
         onClick?.();
         if (!isPlainLeftClick(event)) return;
@@ -56,7 +60,9 @@ function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void })
           ...(transitionType ? { transitionTypes: [transitionType] } : {}),
         });
       }}
-      className="text-sm font-medium text-ink transition-colors hover:text-coral"
+      className={`text-sm transition-colors hover:text-primary ${
+        isCurrent ? "font-semibold text-primary" : "font-medium text-ink"
+      }`}
     >
       {link.label}
     </Link>
@@ -87,8 +93,9 @@ export function Nav({
             lenis?.scrollTo(0, { immediate: true, force: true });
             router.push("/", { scroll: false, transitionTypes: ["nav-back"] });
           }}
-          className="font-heading text-xl font-extrabold tracking-tight text-ink"
+          className="flex items-center gap-2 font-heading text-xl font-extrabold tracking-tight text-ink"
         >
+          <Image src="/logo.svg" alt="" width={32} height={32} className="size-8" />
           Tarlaquena Catering
         </Link>
         <nav className="hidden items-center gap-8 sm:flex">
@@ -99,7 +106,7 @@ export function Nav({
         <div className="flex items-center gap-2">
           {cta && (
             // eslint-disable-next-line jsx-a11y/anchor-has-content -- Base UI's render prop injects the Button's children into this anchor
-            <Button size="sm" render={<a href="#contact" />}>
+            <Button size="default" render={<a href="#contact" />}>
               Inquire Now
             </Button>
           )}

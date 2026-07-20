@@ -30,13 +30,13 @@ export function PlaceholderImage({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-olive/30 bg-gradient-to-br from-mustard/20 to-olive/20 p-4 text-center",
+        "flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-green/30 bg-gradient-to-br from-terracotta/20 to-green/20 p-4 text-center",
         aspect,
         className
       )}
     >
-      <ImageIcon className="size-6 text-olive/60" aria-hidden />
-      <span className="text-xs font-medium text-olive/70">{label}</span>
+      <ImageIcon className="size-6 text-green/60" aria-hidden />
+      <span className="text-xs font-medium text-green/70">{label}</span>
     </div>
   );
 }

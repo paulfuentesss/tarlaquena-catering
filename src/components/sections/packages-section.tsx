@@ -17,19 +17,19 @@ export function PackagesSection() {
                 className="rounded-none"
               />
               <div className="relative">
-                <span className="absolute -top-4 left-4 rounded-md bg-coral px-3 py-1.5 text-sm font-bold text-white">
+                <span className="absolute -top-4 left-4 rounded-md bg-secondary px-3 py-1.5 text-sm font-bold text-secondary-foreground">
                   {pkg.name}
                 </span>
               </div>
-              <div className="space-y-2 bg-olive px-5 pb-5 pt-8 text-cream">
+              <div className="space-y-2 bg-green px-5 pb-5 pt-8 text-cream">
                 <p className="text-sm">
-                  <span className="font-semibold text-mustard">Price:</span> {pkg.price}
+                  <span className="font-semibold text-cream">Price:</span> {pkg.price}
                 </p>
                 <p className="text-sm">
-                  <span className="font-semibold text-mustard">Pax Range:</span> {pkg.paxRange}
+                  <span className="font-semibold text-cream">Pax Range:</span> {pkg.paxRange}
                 </p>
                 <p className="text-sm">
-                  <span className="font-semibold text-mustard">Details:</span>{" "}
+                  <span className="font-semibold text-cream">Details:</span>{" "}
                   {pkg.details.join(", ")}
                 </p>
               </div>

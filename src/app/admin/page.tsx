@@ -54,7 +54,7 @@ export default async function AdminPage() {
           </h1>
           <div className="mt-8 overflow-x-auto rounded-2xl ring-1 ring-border">
             <table className="w-full text-left text-sm">
-              <thead className="bg-olive text-cream">
+              <thead className="bg-green text-cream">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Name</th>
                   <th className="px-4 py-3 font-semibold">Email</th>
