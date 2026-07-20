@@ -57,7 +57,7 @@ Commits current progress on the working branch. No push.
 1. Run the shared preflight above.
 2. `git diff` / `git diff --staged` — if there's nothing to commit (and no branch was just created), say so and stop.
 3. Stage the relevant files (excluding anything flagged in preflight step 5).
-4. Draft a commit title and body from the actual diff, matching this repo's `git log` tone. No confirmation — commit immediately. End the body with:
+4. Draft a commit title and body from the actual diff. Title uses a [Conventional Commits](https://www.conventionalcommits.org/) prefix matching the branch type (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`), e.g. `feat: add view transition animations for site nav`. No confirmation — commit immediately. End the body with:
    ```
    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
    ```
@@ -85,7 +85,7 @@ Finishes the work: commits anything pending, pushes, and makes sure a PR exists.
 4. `git push -u origin <branch>`.
 5. `gh pr view "$branch" --json number,url`:
    - If a PR already exists: refresh its body the same way as the Push phase, report the URL, stop (don't create a duplicate).
-   - If none exists: draft title (<70 chars) and body from the full commit/diff range on the branch, then:
+   - If none exists: draft title (<70 chars, Conventional Commits prefix matching the branch type, e.g. `feat: add site page transitions`) and body from the full commit/diff range on the branch, then:
      ```
      gh pr create --title "..." --body "$(cat <<'EOF'
      ## Summary
