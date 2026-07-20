@@ -1,9 +1,27 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
+import { useLayoutEffect, useSyncExternalStore, type ReactNode } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
 import type { LenisOptions } from "lenis";
 import { usePathname } from "next/navigation";
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(callback: () => void) {
+  const query = window.matchMedia(REDUCED_MOTION_QUERY);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+// No window on the server — treat as reduced-motion so Lenis never mounts before
+// the client's real preference is known, avoiding a flash of Lenis-then-not.
+function getReducedMotionServerSnapshot() {
+  return true;
+}
 
 // `root` mode (no custom wrapper/content divs) animates the native window/document
 // scroll position instead of a transformed wrapper — do not switch this to a custom
@@ -29,18 +47,14 @@ function ScrollResetOnRouteChange() {
 }
 
 export function LenisProvider({ children }: { children: ReactNode }) {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean | null>(null);
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot,
+  );
 
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(query.matches);
-    const onChange = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches);
-    query.addEventListener("change", onChange);
-    return () => query.removeEventListener("change", onChange);
-  }, []);
-
-  // Unknown (pre-mount) or reduced-motion: render plain children, no Lenis JS at all.
-  if (prefersReducedMotion !== false) {
+  // Unknown (pre-hydration) or reduced-motion: render plain children, no Lenis JS at all.
+  if (prefersReducedMotion) {
     return <>{children}</>;
   }
 
