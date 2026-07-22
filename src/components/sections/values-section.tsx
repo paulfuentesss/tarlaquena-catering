@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ValuesSection() {
   return (
-    <section className="bg-green px-6 py-14 text-cream sm:px-10 lg:px-16">
+    <section className="bg-green px-6 py-14 text-cream sm:px-10 sm:py-20 lg:px-16 lg:py-24">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           title="Our Core Values"

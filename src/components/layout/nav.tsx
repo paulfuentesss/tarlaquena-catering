@@ -4,8 +4,8 @@ import { useState, type ReactNode, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
+import { ContactDialog } from "@/components/contact-dialog";
 import { Button } from "@/components/ui/button";
 
 export type NavLink = { label: string; href: string; active: boolean };
@@ -13,8 +13,7 @@ export type NavLink = { label: string; href: string; active: boolean };
 const defaultNavLinks: NavLink[] = [
   { label: "Home", href: "/", active: true },
   { label: "Menu", href: "/menu", active: true },
-  { label: "About", href: "#", active: false },
-  { label: "Blog", href: "#", active: false },
+  { label: "Our Story", href: "#", active: false },
 ];
 
 function navTransitionType(href: string): "nav-forward" | "nav-back" | undefined {
@@ -32,7 +31,6 @@ function isPlainLeftClick(event: MouseEvent<HTMLAnchorElement>) {
 
 function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void }) {
   const router = useRouter();
-  const lenis = useLenis();
   const pathname = usePathname();
   const isCurrent = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
@@ -54,14 +52,15 @@ function NavLinkItem({ link, onClick }: { link: NavLink; onClick?: () => void })
         onClick?.();
         if (!isPlainLeftClick(event)) return;
         event.preventDefault();
-        lenis?.scrollTo(0, { immediate: true, force: true });
         router.push(link.href, {
           scroll: false,
           ...(transitionType ? { transitionTypes: [transitionType] } : {}),
         });
       }}
-      className={`text-sm transition-colors hover:text-primary ${
-        isCurrent ? "font-semibold text-primary" : "font-medium text-ink"
+      className={`relative py-1 text-sm transition-colors hover:text-primary after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-primary after:transition-transform after:content-[''] ${
+        isCurrent
+          ? "font-semibold text-primary after:scale-x-100"
+          : "font-medium text-ink after:scale-x-0"
       }`}
     >
       {link.label}
@@ -80,7 +79,8 @@ export function Nav({
 }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const lenis = useLenis();
+  const pathname = usePathname();
+  const isMenuPage = pathname.startsWith("/menu");
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-cream/95 backdrop-blur">
@@ -90,7 +90,6 @@ export function Nav({
           onClick={(event) => {
             if (!isPlainLeftClick(event)) return;
             event.preventDefault();
-            lenis?.scrollTo(0, { immediate: true, force: true });
             router.push("/", { scroll: false, transitionTypes: ["nav-back"] });
           }}
           className="flex items-center gap-2 font-heading text-xl font-extrabold tracking-tight text-ink"
@@ -104,12 +103,15 @@ export function Nav({
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          {cta && (
-            // eslint-disable-next-line jsx-a11y/anchor-has-content -- Base UI's render prop injects the Button's children into this anchor
-            <Button size="default" render={<a href="#contact" />}>
-              Inquire Now
-            </Button>
-          )}
+          {cta &&
+            (isMenuPage ? (
+              <ContactDialog trigger={<Button size="default">Inquire Now</Button>} />
+            ) : (
+              // eslint-disable-next-line jsx-a11y/anchor-has-content -- Base UI's render prop injects the Button's children into this anchor
+              <Button size="default" render={<a href="#contact" />}>
+                Inquire Now
+              </Button>
+            ))}
           {end}
           {links.length > 0 && (
             <button

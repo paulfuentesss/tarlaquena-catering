@@ -1,5 +1,5 @@
 import type { SVGProps } from "react";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, Smartphone, MapPin, Mail } from "lucide-react";
 import { contactInfo } from "@/lib/content/contact";
 
 function FacebookIcon(props: SVGProps<SVGSVGElement>) {
@@ -33,19 +33,32 @@ export function Footer() {
     <footer className="border-t border-border/60 bg-green px-6 py-10 text-cream sm:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
-          <p className="font-heading text-lg font-bold">Tarlaquena Catering</p>
+          <div>
+            <p className="font-heading text-lg font-bold">Tarlaquena Catering</p>
+            <p className="font-accent text-base italic text-cream/70">
+              Where Good Food and Good Service Meet
+            </p>
+          </div>
 
           <div className="flex flex-col gap-2 text-sm text-cream/80">
             <p className="font-heading text-sm font-bold uppercase tracking-wide text-cream">
               Contact Us
             </p>
             <a href={`tel:${contactInfo.mobile}`} className="flex items-center gap-2 hover:text-white">
-              <Phone className="size-4 shrink-0" />
+              <Smartphone className="size-4 shrink-0" />
               {contactInfo.mobile}
+            </a>
+            <a href={`tel:${contactInfo.mobile2}`} className="flex items-center gap-2 hover:text-white">
+              <Smartphone className="size-4 shrink-0" />
+              {contactInfo.mobile2}
             </a>
             <a href={`tel:${contactInfo.landline}`} className="flex items-center gap-2 hover:text-white">
               <Phone className="size-4 shrink-0" />
               {contactInfo.landline}
+            </a>
+            <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-2 hover:text-white">
+              <Mail className="size-4 shrink-0" />
+              {contactInfo.email}
             </a>
             <div className="flex items-start gap-2">
               <MapPin className="mt-0.5 size-4 shrink-0" />

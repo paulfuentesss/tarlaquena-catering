@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-cream px-6 py-16 sm:px-10 lg:px-16">
+    <section className="bg-cream px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading title="What Our Clients Say" align="center" />
         <div className="mt-10 grid gap-8 sm:grid-cols-3">

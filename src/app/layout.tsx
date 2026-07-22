@@ -96,7 +96,7 @@ export default function RootLayout({
         data-scroll-behavior="smooth"
         className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full antialiased`}
       >
-        <body className="min-h-full flex flex-col bg-cream">
+        <body className="flex min-h-dvh flex-col bg-cream">
           <LenisProvider>
             {children}
             <Toaster />
