@@ -4,7 +4,7 @@ import { PlaceholderImage } from "@/components/ui/placeholder-image";
 
 export function Hero() {
   return (
-    <section className="bg-cream px-6 pt-14 pb-10 sm:px-10 lg:px-16">
+    <section className="bg-cream px-6 pt-14 pb-10 sm:px-10 sm:pt-20 sm:pb-16 lg:px-16 lg:pt-28 lg:pb-20">
       <div className="mx-auto max-w-6xl">
         <h1 className="font-heading text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl">
           Discover Culinary
@@ -14,6 +14,10 @@ export function Hero() {
             with Tarlaquena
           </span>
         </h1>
+
+        <p className="mt-4 font-accent text-xl italic text-ink/70 sm:text-2xl">
+          Where Good Food and Good Service Meet
+        </p>
 
         <div className="relative mt-8">
           <PlaceholderImage

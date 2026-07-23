@@ -1,8 +1,9 @@
 import { ViewTransition } from "react";
 import { Hero } from "@/components/sections/hero";
 import { ValuesSection } from "@/components/sections/values-section";
-import { OfferingsSection } from "@/components/sections/offerings-section";
+import { FoodGridSection } from "@/components/sections/food-grid-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { FaqSection } from "@/components/sections/faq-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
 export default function Home() {
@@ -13,8 +14,9 @@ export default function Home() {
     >
       <Hero />
       <ValuesSection />
-      <OfferingsSection variant="preview" />
+      <FoodGridSection />
       <TestimonialsSection />
+      <FaqSection />
       <ContactSection />
     </ViewTransition>
   );

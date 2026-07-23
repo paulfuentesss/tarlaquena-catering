@@ -10,6 +10,12 @@ const ContactFormSchema = z.object({
     .string()
     .trim()
     .pipe(z.email({ error: "Please enter a valid email." })),
+  phone: z
+    .string()
+    .trim()
+    .refine((val) => /^(?:\+63|0)\d{9,10}$/.test(val.replace(/[\s()-]/g, "")), {
+      error: "Please enter a valid PH phone number (e.g. 0917 000 0000).",
+    }),
   message: z
     .string()
     .trim()
@@ -21,6 +27,7 @@ export type ContactFormState = {
   errors?: {
     name?: string[];
     email?: string[];
+    phone?: string[];
     message?: string[];
   };
 };
@@ -32,6 +39,7 @@ export async function submitContactForm(
   const validatedFields = ContactFormSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
+    phone: formData.get("phone"),
     message: formData.get("message"),
   });
 
