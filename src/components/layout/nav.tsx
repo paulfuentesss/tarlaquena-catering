@@ -12,12 +12,13 @@ export type NavLink = { label: string; href: string; active: boolean };
 
 const defaultNavLinks: NavLink[] = [
   { label: "Home", href: "/", active: true },
+  { label: "Our Story", href: "/about", active: true },
   { label: "Menu", href: "/menu", active: true },
-  { label: "Our Story", href: "#", active: false },
 ];
 
 function navTransitionType(href: string): "nav-forward" | "nav-back" | undefined {
   if (href === "/") return "nav-back";
+  if (href === "/about") return "nav-forward";
   if (href === "/menu") return "nav-forward";
   return undefined;
 }
@@ -80,7 +81,7 @@ export function Nav({
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const isMenuPage = pathname.startsWith("/menu");
+  const hasContactAnchor = pathname === "/";
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-cream/95 backdrop-blur">
@@ -104,13 +105,13 @@ export function Nav({
         </nav>
         <div className="flex items-center gap-2">
           {cta &&
-            (isMenuPage ? (
-              <ContactDialog trigger={<Button size="default">Inquire Now</Button>} />
-            ) : (
+            (hasContactAnchor ? (
               // eslint-disable-next-line jsx-a11y/anchor-has-content -- Base UI's render prop injects the Button's children into this anchor
               <Button size="default" render={<a href="#contact" />}>
                 Inquire Now
               </Button>
+            ) : (
+              <ContactDialog trigger={<Button size="default">Inquire Now</Button>} />
             ))}
           {end}
           {links.length > 0 && (

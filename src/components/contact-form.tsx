@@ -14,7 +14,7 @@ const initialState: ContactFormState = {};
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full hover:scale-100">
+    <Button type="submit" disabled={pending} className="h-11 w-full hover:scale-100">
       {pending ? "Sending…" : "Send Inquiry"}
     </Button>
   );
