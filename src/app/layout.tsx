@@ -23,12 +23,31 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const title = "Tarlaquena Catering";
+const description =
+  "Tarlaquena Catering — full-service catering for buffets, meal boxes, and events.";
+
 export const metadata: Metadata = {
-  title: "Tarlaquena Catering",
-  description:
-    "Tarlaquena Catering — full-service catering for buffets, meal boxes, and events.",
+  metadataBase: new URL("https://tarlaquena-catering-three.vercel.app"),
+  title,
+  description,
   icons: {
     icon: "/logo.svg",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title,
+    description,
+    siteName: title,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
   },
 };
 

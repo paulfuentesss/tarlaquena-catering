@@ -8,6 +8,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const EVENT_TYPES = ["Wedding", "Birthday", "Corporate", "Debut", "Other"];
+
+const selectTriggerClassName =
+  "w-full justify-between rounded-md border-transparent bg-muted/25 px-3.5 text-base font-normal focus-visible:bg-card md:text-sm data-[size=default]:h-11";
 
 const initialState: ContactFormState = {};
 
@@ -55,15 +67,56 @@ export function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   return (
     <form ref={formRef} action={formAction}>
       <FieldGroup>
-        <ContactField id="name" label="Name" errors={state.errors?.name}>
-          <Input id="name" name="name" placeholder="Your name" required />
-        </ContactField>
-        <ContactField id="email" label="Email" errors={state.errors?.email}>
-          <Input id="email" name="email" type="email" placeholder="you@example.com" required />
-        </ContactField>
-        <ContactField id="phone" label="Phone Number" errors={state.errors?.phone}>
-          <Input id="phone" name="phone" type="tel" placeholder="0917 000 0000" required />
-        </ContactField>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ContactField id="firstName" label="First Name" errors={state.errors?.firstName}>
+            <Input id="firstName" name="firstName" placeholder="Juan" required />
+          </ContactField>
+          <ContactField id="lastName" label="Last Name" errors={state.errors?.lastName}>
+            <Input id="lastName" name="lastName" placeholder="Dela Cruz" required />
+          </ContactField>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ContactField id="email" label="Email" errors={state.errors?.email}>
+            <Input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </ContactField>
+          <ContactField id="phone" label="Phone Number" errors={state.errors?.phone}>
+            <Input id="phone" name="phone" type="tel" placeholder="0917 000 0000" required />
+          </ContactField>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ContactField id="eventDate" label="Event Date" errors={state.errors?.eventDate}>
+            <Input id="eventDate" name="eventDate" type="date" required />
+          </ContactField>
+          <ContactField id="guestCount" label="Guest Count" errors={state.errors?.guestCount}>
+            <Input
+              id="guestCount"
+              name="guestCount"
+              type="number"
+              min={1}
+              placeholder="e.g. 80"
+              required
+            />
+          </ContactField>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ContactField id="eventType" label="Event Type" errors={state.errors?.eventType}>
+            <Select name="eventType">
+              <SelectTrigger id="eventType" className={selectTriggerClassName}>
+                <SelectValue placeholder="Select event type" />
+              </SelectTrigger>
+              <SelectContent>
+                {EVENT_TYPES.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </ContactField>
+          <ContactField id="location" label="Location / Venue" errors={state.errors?.location}>
+            <Input id="location" name="location" placeholder="e.g. Makati City" />
+          </ContactField>
+        </div>
         <ContactField id="message" label="Message" errors={state.errors?.message}>
           <Textarea
             id="message"
