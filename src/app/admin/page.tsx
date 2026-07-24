@@ -72,7 +72,9 @@ export default async function AdminPage() {
                 ) : (
                   inquiries.map((inquiry) => (
                     <tr key={inquiry.id}>
-                      <td className="px-4 py-3">{inquiry.name}</td>
+                      <td className="px-4 py-3">
+                        {inquiry.firstName} {inquiry.lastName}
+                      </td>
                       <td className="px-4 py-3">{inquiry.email}</td>
                       <td className="max-w-xs px-4 py-3">{inquiry.message}</td>
                       <td className="px-4 py-3 whitespace-nowrap">
