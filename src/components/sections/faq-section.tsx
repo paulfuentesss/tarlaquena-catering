@@ -11,14 +11,10 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative overflow-hidden bg-terracotta/5 px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-28">
+    <section className="relative overflow-hidden bg-terracotta/7 px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-28">
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-cream to-transparent sm:h-20 lg:h-28"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-cream to-transparent sm:h-20 lg:h-28"
+        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-cream to-transparent sm:h-40 lg:h-56"
       />
       <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start lg:gap-16">
         <div className="lg:sticky lg:top-24">

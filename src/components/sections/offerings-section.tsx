@@ -12,7 +12,7 @@ export function OfferingsSection({ variant = "full" }: OfferingsSectionProps) {
   const items = variant === "preview" ? offerings.slice(0, 4) : offerings;
 
   return (
-    <section className="bg-cream px-6 py-16 sm:px-10 lg:px-16">
+    <section className="px-6 py-16 sm:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center justify-between gap-4">
           <SectionHeading title="Our Offerings" />

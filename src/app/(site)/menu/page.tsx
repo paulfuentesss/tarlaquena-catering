@@ -15,8 +15,10 @@ export default function MenuPage() {
       exit={{ "nav-forward": "nav-forward", "nav-back": "nav-back", default: "fade" }}
     >
       <MenuBanner />
-      <OfferingsSection variant="full" />
-      <PackagesSection />
+      <div className="bg-gradient-to-b from-cream via-terracotta/8 to-terracotta/15">
+        <OfferingsSection variant="full" />
+        <PackagesSection />
+      </div>
     </ViewTransition>
   );
 }
