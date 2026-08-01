@@ -57,6 +57,8 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --animate-arrow-nudge: arrow-nudge 1.4s ease-in-out infinite;
+  /* Keep this duration in sync with AUTOPLAY_DELAY_MS in testimonials-section.tsx. */
+  --animate-progress-fill: progress-fill 4000ms linear forwards;
 }
 
 @keyframes arrow-nudge {
@@ -66,6 +68,21 @@
   }
   50% {
     transform: translateX(6px);
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-progress-fill {
+    animation-duration: 0.01ms !important;
   }
 }
 

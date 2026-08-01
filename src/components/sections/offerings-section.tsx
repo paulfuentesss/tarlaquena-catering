@@ -22,20 +22,25 @@ export function OfferingsSection({ variant = "full" }: OfferingsSectionProps) {
             </Button>
           )}
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
           {items.map((offering) => (
-            <div key={offering.slug} className="flex flex-col overflow-hidden rounded-2xl">
-              <div className="bg-secondary px-3 py-2 text-center text-sm font-bold text-secondary-foreground">
-                {offering.title}
-              </div>
+            <div
+              key={offering.slug}
+              className="flex flex-col overflow-hidden rounded-2xl bg-card shadow-md shadow-black/14"
+            >
               <PlaceholderImage
                 label={`${offering.title} photo — TODO: replace`}
-                aspect="aspect-[4/5]"
+                aspect="aspect-[4/3]"
+                src={offering.image}
+                alt={offering.title}
                 className="rounded-none"
               />
-              {variant === "full" && (
-                <p className="mt-2 text-sm text-ink/70">{offering.description}</p>
-              )}
+              <div className="flex flex-col gap-1 px-4 py-4">
+                <p className="font-heading text-base font-bold text-ink">{offering.title}</p>
+                {variant === "full" && (
+                  <p className="text-sm text-ink/60">{offering.description}</p>
+                )}
+              </div>
             </div>
           ))}
         </div>
