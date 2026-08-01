@@ -30,7 +30,7 @@ function getReducedMotionServerSnapshot() {
 // target like #contact doesn't land clipped underneath it.
 const LENIS_OPTIONS: LenisOptions = {
   autoRaf: true,
-  anchors: { offset: -96 },
+  anchors: { offset: -72 },
 };
 
 // Safety net for navigations that don't go through nav.tsx's manual scrollTo reset

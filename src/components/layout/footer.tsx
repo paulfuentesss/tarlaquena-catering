@@ -1,6 +1,16 @@
 import type { SVGProps } from "react";
+import Link from "next/link";
+import QRCode from "qrcode";
 import { Phone, Smartphone, MapPin, Mail } from "lucide-react";
 import { contactInfo } from "@/lib/content/contact";
+
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "Our Story", href: "/about" },
+  { label: "Menu", href: "/menu" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
+];
 
 function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -28,7 +38,25 @@ function InstagramIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function Footer() {
+function MessengerIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <path
+        fill="currentColor"
+        d="M12 2C6.48 2 2 6.13 2 11.25c0 2.9 1.44 5.49 3.69 7.19V22l3.38-1.86c.9.25 1.87.38 2.93.38 5.52 0 10-4.13 10-9.27S17.52 2 12 2z"
+      />
+      <path fill="#377d41" d="m12.75 6.5-4.7 6.5h4l-1.1 4.5 5-6.5h-4l1.3-4.5z" />
+    </svg>
+  );
+}
+
+export async function Footer() {
+  const qrCodeSvg = await QRCode.toString(contactInfo.messengerUrl, {
+    type: "svg",
+    margin: 0,
+    color: { dark: "#27592e", light: "#fbf3e9" },
+  });
+
   return (
     <footer className="border-t border-border/60 bg-green px-6 py-10 text-cream sm:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
@@ -38,6 +66,33 @@ export function Footer() {
             <p className="font-accent text-base italic text-cream/70">
               Where Good Food and Good Service Meet
             </p>
+            <a
+              href={contactInfo.messengerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-3 hover:opacity-90"
+            >
+              <span
+                className="size-20 shrink-0 overflow-hidden rounded-md bg-cream p-1.5 [&_svg]:h-full [&_svg]:w-full"
+                dangerouslySetInnerHTML={{ __html: qrCodeSvg }}
+              />
+              <span className="text-sm text-cream/80">
+                Scan or tap to
+                <br />
+                chat with us
+              </span>
+            </a>
+          </div>
+
+          <div className="flex flex-col gap-2 text-sm text-cream/80">
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-cream">
+              Quick Links
+            </p>
+            {quickLinks.map((link) => (
+              <Link key={link.label} href={link.href} className="hover:text-white">
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-cream/80">
@@ -82,6 +137,15 @@ export function Footer() {
                 className="hover:text-white"
               >
                 <InstagramIcon className="size-5" />
+              </a>
+              <a
+                href={contactInfo.messengerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Messenger"
+                className="hover:text-white"
+              >
+                <MessengerIcon className="size-5" />
               </a>
             </div>
           </div>

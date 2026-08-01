@@ -11,7 +11,10 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative overflow-hidden bg-terracotta/7 px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-28">
+    <section
+      id="faq"
+      className="relative overflow-hidden bg-terracotta/7 px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-28"
+    >
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-cream to-transparent sm:h-40 lg:h-56"

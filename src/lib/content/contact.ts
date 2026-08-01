@@ -6,4 +6,6 @@ export const contactInfo = {
   address: "1 Anonas Extension, Sikatuna Village, Quezon City 1101",
   facebookUrl: "https://web.facebook.com/profile.php?id=10007100324282",
   instagramUrl: "https://www.instagram.com/tarlaquenacatering?igsh=b3AzZW1zdTc4c2V4",
+  // TODO: swap for the m.me Messenger link once the page's Messenger is confirmed.
+  messengerUrl: "https://web.facebook.com/profile.php?id=10007100324282",
 };

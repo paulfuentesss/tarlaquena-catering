@@ -11,11 +11,11 @@ export function ContactDialog({ trigger }: { trigger: ReactElement }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger render={trigger} />
-      <DialogPopup>
-        <DialogTitle>Send an Inquiry</DialogTitle>
-        <div className="mt-6">
-          <ContactForm onSuccess={close} />
+      <DialogPopup className="max-w-lg bg-card">
+        <div className="shrink-0 px-6 pt-6 pb-4">
+          <DialogTitle>Send an Inquiry</DialogTitle>
         </div>
+        <ContactForm onSuccess={close} scrollableFields />
       </DialogPopup>
     </Dialog>
   );
