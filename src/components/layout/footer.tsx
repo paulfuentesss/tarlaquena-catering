@@ -1,6 +1,15 @@
 import type { SVGProps } from "react";
+import Link from "next/link";
 import { Phone, Smartphone, MapPin, Mail } from "lucide-react";
 import { contactInfo } from "@/lib/content/contact";
+
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "Our Story", href: "/about" },
+  { label: "Menu", href: "/menu" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
+];
 
 function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -38,6 +47,17 @@ export function Footer() {
             <p className="font-accent text-base italic text-cream/70">
               Where Good Food and Good Service Meet
             </p>
+          </div>
+
+          <div className="flex flex-col gap-2 text-sm text-cream/80">
+            <p className="font-heading text-sm font-bold uppercase tracking-wide text-cream">
+              Quick Links
+            </p>
+            {quickLinks.map((link) => (
+              <Link key={link.label} href={link.href} className="hover:text-white">
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-cream/80">

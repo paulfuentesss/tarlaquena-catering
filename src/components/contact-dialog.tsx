@@ -11,7 +11,7 @@ export function ContactDialog({ trigger }: { trigger: ReactElement }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger render={trigger} />
-      <DialogPopup>
+      <DialogPopup className="max-w-lg">
         <DialogTitle>Send an Inquiry</DialogTitle>
         <div className="mt-6">
           <ContactForm onSuccess={close} />
