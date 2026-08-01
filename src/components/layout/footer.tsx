@@ -45,7 +45,7 @@ function MessengerIcon(props: SVGProps<SVGSVGElement>) {
         fill="currentColor"
         d="M12 2C6.48 2 2 6.13 2 11.25c0 2.9 1.44 5.49 3.69 7.19V22l3.38-1.86c.9.25 1.87.38 2.93.38 5.52 0 10-4.13 10-9.27S17.52 2 12 2z"
       />
-      <path fill="#377d41" d="m11.5 6.5-4.7 6.5h4l-1.1 4.5 5-6.5h-4l1.3-4.5z" />
+      <path fill="#377d41" d="m12.75 6.5-4.7 6.5h4l-1.1 4.5 5-6.5h-4l1.3-4.5z" />
     </svg>
   );
 }
