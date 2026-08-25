@@ -18,7 +18,7 @@ export function ContactSection() {
       />
       <div className="relative mx-auto max-w-2xl">
         <SectionHeading eyebrow="Get in touch" title="Send an Inquiry" align="center" />
-        <Card className="mt-4 shadow-[0_30px_60px_-30px_rgba(26,26,22,0.25)] ring-foreground/5 sm:mt-6 [--card-spacing:--spacing(6)] sm:[--card-spacing:--spacing(10)]">
+        <Card className="mt-4 shadow-[0_20px_50px_-28px_rgba(26,26,22,0.12)] ring-foreground/5 sm:mt-6 [--card-spacing:--spacing(6)] sm:[--card-spacing:--spacing(10)]">
           <CardContent>
             <ContactForm />
           </CardContent>

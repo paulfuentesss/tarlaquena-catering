@@ -6,7 +6,7 @@ export function ChefSection() {
   return (
     <section
       id="chef"
-      // 68px matches the sticky header's rendered height (see lenis-provider.tsx's anchor offset comment).
+      // 68px matches the sticky header's rendered height.
       className="relative flex min-h-[calc(100dvh-68px)] flex-col justify-center overflow-hidden bg-cream px-6 py-16 sm:px-10 lg:px-16"
     >
       <div
@@ -28,7 +28,7 @@ export function ChefSection() {
           ))}
         </div>
         <PlaceholderImage
-          label="Chef portrait photo — TODO: replace"
+          label="Chef portrait photo"
           aspect="aspect-[3/4]"
           className="mx-auto w-full max-w-sm grayscale"
         />

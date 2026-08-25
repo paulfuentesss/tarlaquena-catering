@@ -21,7 +21,7 @@ export function Hero() {
 
         <div className="relative mt-8">
           <PlaceholderImage
-            label="Hero banner — TODO: replace with food photo"
+            label="Hero banner"
             aspect="aspect-[16/7]"
             className="w-full"
           />

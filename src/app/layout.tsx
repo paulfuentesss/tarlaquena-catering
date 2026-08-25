@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Fraunces, Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
-import { LenisProvider } from "@/components/providers/lenis-provider";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -76,7 +75,8 @@ export default function RootLayout({
           fontFamily: "var(--font-body)",
         },
         elements: {
-          card: "shadow-lg rounded-2xl border border-[var(--border)]",
+          cardBox: "!shadow-none rounded-2xl ring-1 ring-foreground/10",
+          card: "!shadow-none rounded-2xl",
           formButtonPrimary:
             "bg-primary hover:bg-primary-dark text-white normal-case shadow-none",
           formFieldInput:
@@ -96,7 +96,7 @@ export default function RootLayout({
             color: "#27592e",
             border: "none",
           },
-          userButtonPopoverCard: "shadow-lg rounded-2xl border border-[var(--border)]",
+          userButtonPopoverCard: "!shadow-none rounded-2xl ring-1 ring-foreground/10",
           userButtonPopoverActionButton: {
             color: "#1a1a16",
             "&:hover": {
@@ -116,10 +116,8 @@ export default function RootLayout({
         className={`${bricolage.variable} ${fraunces.variable} ${inter.variable} h-full antialiased`}
       >
         <body className="flex min-h-dvh flex-col bg-cream">
-          <LenisProvider>
-            {children}
-            <Toaster />
-          </LenisProvider>
+          {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

@@ -18,7 +18,7 @@ export function EventsGallerySection() {
           {eventGalleryItems.map((item) => (
             <div key={item.slug} className="flex flex-col gap-2">
               <PlaceholderImage
-                label={`${item.title} photo — TODO: replace`}
+                label={`${item.title} photo`}
                 aspect="aspect-square"
                 src={item.image}
                 alt={item.title}

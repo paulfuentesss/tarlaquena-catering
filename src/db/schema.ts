@@ -1,4 +1,11 @@
-import { date, integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { date, integer, pgEnum, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+
+export const inquiryStatusEnum = pgEnum("inquiry_status", [
+  "new",
+  "contacted",
+  "booked",
+  "archived",
+]);
 
 export const contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
@@ -11,5 +18,9 @@ export const contactMessages = pgTable("contact_messages", {
   eventType: text("event_type"),
   location: text("location"),
   message: text("message").notNull(),
+  status: inquiryStatusEnum("status").notNull().default("new"),
+  notes: text("notes").notNull().default(""),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+export type ContactMessage = typeof contactMessages.$inferSelect;

@@ -11,7 +11,7 @@ export function MenuBanner() {
                 <PlaceholderImage
                   aspect="aspect-auto"
                   className="h-full w-full rounded-none"
-                  label="Lechon Kawali photo — TODO: replace"
+                  label="Lechon Kawali photo"
                   alt="Crispy lechon kawali served on a platter"
                 />
               </div>
@@ -28,7 +28,7 @@ export function MenuBanner() {
               <PlaceholderImage
                 aspect="aspect-auto"
                 className="h-full w-full rounded-none"
-                label="Pancit Palabok photo — TODO: replace"
+                label="Pancit Palabok photo"
                 alt="A bowl of pancit palabok topped with shrimp and egg"
               />
             </div>
@@ -62,7 +62,7 @@ export function MenuBanner() {
                 <PlaceholderImage
                   aspect="aspect-auto"
                   className="h-full w-full rounded-none"
-                  label="Pancit Palabok photo — TODO: replace"
+                  label="Pancit Palabok photo"
                   alt="A bowl of pancit palabok topped with shrimp and egg"
                 />
               </div>
