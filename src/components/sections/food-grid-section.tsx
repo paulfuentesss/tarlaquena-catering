@@ -20,7 +20,7 @@ export function FoodGridSection() {
                 className="grid grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-16"
               >
                 <PlaceholderImage
-                  label={`${item.title} photo — TODO: replace`}
+                  label={`${item.title} photo`}
                   aspect="aspect-[4/3]"
                   src={item.image}
                   alt={item.title}

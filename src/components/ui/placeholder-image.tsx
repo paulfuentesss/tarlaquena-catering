@@ -30,7 +30,7 @@ export function PlaceholderImage({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-green/30 bg-gradient-to-br from-terracotta/20 to-green/20 p-4 text-center",
+        "flex flex-col items-center justify-center gap-2 rounded-2xl border border-green/20 bg-gradient-to-br from-terracotta/20 to-green/20 p-4 text-center",
         aspect,
         className
       )}

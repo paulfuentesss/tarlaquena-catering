@@ -16,7 +16,7 @@ export function PackagesSection() {
               className="flex items-center gap-4 rounded-2xl bg-card p-4 shadow-md shadow-black/14 ring-1 ring-border"
             >
               <PlaceholderImage
-                label={`${pkg.name} photo — TODO: replace`}
+                label={`${pkg.name} photo`}
                 aspect="aspect-square"
                 src={pkg.image}
                 alt={pkg.name}
@@ -38,7 +38,7 @@ export function PackagesSection() {
           {packages.map((pkg) => (
             <div key={pkg.slug} className="overflow-hidden rounded-2xl shadow-md shadow-black/14 ring-1 ring-border">
               <PlaceholderImage
-                label={`${pkg.name} photo — TODO: replace`}
+                label={`${pkg.name} photo`}
                 aspect="aspect-[4/3]"
                 src={pkg.image}
                 alt={pkg.name}

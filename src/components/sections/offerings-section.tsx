@@ -29,7 +29,7 @@ export function OfferingsSection({ variant = "full" }: OfferingsSectionProps) {
               className="flex flex-col overflow-hidden rounded-2xl bg-card shadow-md shadow-black/14"
             >
               <PlaceholderImage
-                label={`${offering.title} photo — TODO: replace`}
+                label={`${offering.title} photo`}
                 aspect="aspect-[4/3]"
                 src={offering.image}
                 alt={offering.title}

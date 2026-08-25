@@ -7,7 +7,7 @@ export function CompanySection() {
     <section id="company" className="bg-[#1a1b16] px-6 py-16 text-cream sm:px-10 sm:py-20 lg:px-16 lg:py-28">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <PlaceholderImage
-          label="Catering team photo — TODO: replace"
+          label="Catering team photo"
           aspect="aspect-[4/3]"
           className="lg:order-1"
         />

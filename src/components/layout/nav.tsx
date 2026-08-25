@@ -120,21 +120,45 @@ export function Nav({
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((value) => !value)}
-              className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-ink transition-colors hover:bg-muted sm:hidden"
+              className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-ink transition-colors hover:bg-muted sm:hidden"
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              <Menu
+                aria-hidden="true"
+                className={`absolute size-5 transition-all duration-300 ease-in-out ${
+                  open ? "rotate-45 scale-75 opacity-0" : "rotate-0 scale-100 opacity-100"
+                }`}
+              />
+              <X
+                aria-hidden="true"
+                className={`absolute size-5 transition-all duration-300 ease-in-out ${
+                  open ? "rotate-0 scale-100 opacity-100" : "-rotate-45 scale-75 opacity-0"
+                }`}
+              />
             </button>
           )}
         </div>
       </div>
-      {open && links.length > 0 && (
-        <nav className="flex flex-col gap-1 border-t border-border/60 bg-cream px-6 py-4 sm:hidden">
-          {links.map((link) => (
-            <div key={link.label} className="py-2">
-              <NavLinkItem link={link} onClick={() => setOpen(false)} />
-            </div>
-          ))}
-        </nav>
+      {links.length > 0 && (
+        <div
+          aria-hidden={!open}
+          className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out sm:hidden ${
+            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <nav
+              className={`flex flex-col gap-1 border-t border-border/60 bg-cream px-6 py-4 transition-opacity duration-300 ease-in-out ${
+                open ? "opacity-100 delay-100" : "opacity-0"
+              }`}
+            >
+              {links.map((link) => (
+                <div key={link.label} className="py-2">
+                  <NavLinkItem link={link} onClick={() => setOpen(false)} />
+                </div>
+              ))}
+            </nav>
+          </div>
+        </div>
       )}
     </header>
   );
